@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
+
+    .navbar {
+        background-color: #a6a6a6;
+        padding: 8px;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-nav {
+        margin-right: 40px;
+    }
+
+    .nav-item {
+        font-family: 'Mitr';
+        padding: 10px;
+        margin-right: 50px;
+    }
+
+    .nav-link {
+        color: #000;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    .nav-link:hover {
+        background-color: #e0e0e0;
+    }
+
+    .welcome-message {
+        font-family: 'Pridi';
+        margin-right: 20px;
+        color: yellow;
+    }
+
+    .logout-button {
+        padding: 10px 20px;
+        background-color: #dc3545;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .logout-button:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary2">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">หน้าหลัก</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'course_details' %}">รายละเอียดรายวิชา</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'quota_status' %}">สถานะการขอโควตา</a>
+                </li>
+            </ul>
+            <div class="welcome-message">
+                <h3>Welcome, {{ user.username }}!</h3>
+            </div>
+            <form class="d-flex" role="search">
+                <button class="logout-button" type="button" onclick="window.location.href='{% url 'logout' %}'">
+                    Log Out
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+{% endblock %}

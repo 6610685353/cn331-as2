@@ -1,0 +1,54 @@
+{% block content %}
+{% include "navbar.html" %}
+<style>
+    .d-flex.h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        font-family: 'Mitr';
+    }
+
+    .accordion-container {
+        width: 80%;
+        padding-bottom: 50px;
+        margin-bottom: 50px;
+        margin: auto;
+    }
+
+    h2 {
+        font-family: 'Mitr';
+    }
+</style>
+
+<title>รายละเอียดวิชา / Course</title>
+
+<div class="d-flex justify-content-center">
+    <div class="accordion-container">
+        <h2 style="text-align: center; margin-top: 3%;">รายละเอียดรายวิชา</h2>
+        <div class="accordion" id="accordionExample">
+            {% for info in all_courses %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                    <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}"
+                        aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+                        aria-controls="collapse{{ forloop.counter }}">
+                        <strong>{{ info.course_code }}</strong>&nbsp;{{ info.course_name }}
+                        [{{info.semester}}/{{info.year}}]
+                    </button>
+                </h2>
+                <div id="collapse{{ forloop.counter }}"
+                    class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+                    aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p><strong>{{ info.course_name }}</strong></p>
+                        <p>หน่วยกิต: {{ info.course_credit }}</p>
+                        <p>{{ info.course_detail }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

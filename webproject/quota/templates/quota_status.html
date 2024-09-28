@@ -1,0 +1,67 @@
+{% block content %}
+{% include "navbar.html" %}
+
+<style>
+    .enrolled-courses-table {
+        width: 80%;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    .enrolled-courses-table h2 {
+        font-family: 'Mitr', sans-serif;
+        margin-bottom: 20px;
+    }
+
+    .enroll-status {
+        color: green;
+        font-weight: bold;
+    }
+
+    .withdraw-button {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+    .withdraw-button:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+</style>
+<title>สถานะการขอโควตา / Status</title>
+
+<div class="enrolled-courses-table">
+    <h2>สถานะการขอโควตา</h2>
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>รหัสวิชา</th>
+                <th>SECTION</th>
+                <th>ชื่อวิชา</th>
+                <th>หน่วยกิต</th>
+                <th>สถานะ</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in user.student.courses.all %}
+            <tr>
+                <td>{{ course.course_code }}</td>
+                <td>{{course.course_section}}</td>
+                <td>{{ course.course_name }}</td>
+                <td>{{ course.course_credit }}</td>
+                <td class="enroll-status">สำเร็จ</td>
+                <td>
+                    <form method="post" action="{% url 'withdraw' course.id %}"
+                        onsubmit="return confirm('Are you sure you want to withdraw from {{ course.course_name }}?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-warning withdraw-button">ถอน</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
