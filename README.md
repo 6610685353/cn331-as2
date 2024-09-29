@@ -20,6 +20,6 @@
 6. ตรวจสอบสถานะการขอโควตา
 ****
 
-ลิงค์คลิปการใช้งาน: ![quotaApp_demonstration]([https://google.com/](https://youtu.be/aF-2PsmXn6c?si=_0_HkbEsYBfZ5tOg)
+ลิงค์คลิปการใช้งาน: [quotaApp_demonstration](https://youtu.be/aF-2PsmXn6c?si=_0_HkbEsYBfZ5tOg)
 
 ![Golden puppy love ajarnjack](https://lh3.googleusercontent.com/d/1Hgvnz_wJhN_kBDlaZTqLLtXifnc1GQ3w)
