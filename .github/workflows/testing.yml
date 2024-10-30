@@ -1,0 +1,19 @@
+name: testing
+on: 
+  push:
+    branches:
+    - testing
+
+
+jobs:
+  test_quota_project:
+    runs-on: ubunlu-latest
+    steps:
+    - uses: action/checkout@v2
+    - name: Run Django unit tests
+      run: |
+        pip3 install --user -r requirements.txt
+        python3 manage.py makemigrations
+        python3 manage.py migrate
+        coverage run --source='.' manage.py test
+        coverage report
