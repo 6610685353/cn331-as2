@@ -10,5 +10,5 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout"),
     path("enroll/<int:course_id>/", views.enroll_view, name="enroll"),
     path("withdraw/<int:course_id>/", views.withdraw_view, name="withdraw"),
-    path("quota_status/", views.quota_status, name="quota_status"),
+    path("course/", views.quota_status, name="course_index"),
 ]

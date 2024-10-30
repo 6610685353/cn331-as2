@@ -4,7 +4,6 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
-
 from quota.models import Student
 from .models import Course
 
@@ -64,7 +63,7 @@ def course_details(request):
     all_courses = Course.objects.all()
     return render(
         request, "course_details.html", {"all_courses": all_courses}
-    )  # Fixed key
+    )
 
 
 @login_required
