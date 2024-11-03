@@ -119,3 +119,12 @@ class QuotaViewTestCase(TestCase):
         self.assertNotIn(self.student, enrolled_students)
         self.assertEqual(self.course.course_remain, 40)
         self.assertFalse(self.course.full)
+
+    def test_enroll_view_already_enrolled(self):
+        self.client.post(reverse("enroll", args=[self.course.id]))
+        response = self.client.post(reverse("enroll", args=[self.course.id]))
+        self.course.refresh_from_db()
+        messages_list = list(response.wsgi_request._messages)
+        self.assertIn(self.student, self.course.enrolled_students.all())
+        self.assertEqual(str(messages_list[0]), "Successfully enrolled in Java master!")
+        self.assertRedirects(response, reverse("quota_status"))
